@@ -146,7 +146,9 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
-    
+
+with app.app_context():
+    db.create_all()
     # add new user
     #new_user = User(username='oyinlola')
     #new_user.set_password('Oyinlolareb1')
