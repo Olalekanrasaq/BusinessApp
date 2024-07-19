@@ -149,13 +149,6 @@ class LoginForm(FlaskForm):
 
 with app.app_context():
     db.create_all()
-    
-    add new user
-    new_user = User(username='oyinlola')
-    new_user.set_password('Oyinlolareb1')
-    new_user.set_role("admin")
-    db.session.add(new_user)
-    db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 @login_required
