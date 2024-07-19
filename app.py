@@ -115,7 +115,6 @@ class IncExpensesForm(FlaskForm):
     date_sold = DateField('Date Sold', format='%Y-%m-%d', validators=[Optional()])
     submit = SubmitField('Add Record')
 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -973,7 +972,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
-
-
-if __name__ == '__main__':
-    app.run()
