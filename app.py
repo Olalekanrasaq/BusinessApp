@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import and_
@@ -972,3 +973,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+
+
+if __name__ == '__main__':
+    app.run()
