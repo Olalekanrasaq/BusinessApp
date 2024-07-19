@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from sqlalchemy import and_
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField, IntegerField, FloatField, DateField, PasswordField
@@ -10,7 +11,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 app = Flask(__name__)
-app.secret_key = "Analyst@10"
+app.config['SECRET_KEY'] = "Analyst@10"
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tailor.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://uer9j5ka7ka7in:p4fde058d8fab9722c73f42d3b4742f54024e581afde796f16c94fb9e7e82e79f@c3nv2ev86aje4j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d2p006434tvimt"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -18,6 +19,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -144,10 +146,6 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
-
-# Create tables
-with app.app_context():
-    db.create_all()
     
     # add new user
     #new_user = User(username='oyinlola')
@@ -983,4 +981,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
