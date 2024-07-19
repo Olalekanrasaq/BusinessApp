@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import and_
@@ -116,18 +115,17 @@ class IncExpensesForm(FlaskForm):
     date_sold = DateField('Date Sold', format='%Y-%m-%d', validators=[Optional()])
     submit = SubmitField('Add Record')
 
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    is_active = db.Column(db.Boolean, default=True)  # Add this line
-    role = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(80), nullable=False)  # Change this field
 
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password = password  # Store plain text password
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return self.password == password  # Compare plain text passwords
 
     # Ensure the other required methods are present
     def is_active(self):
