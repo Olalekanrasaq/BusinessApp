@@ -10,8 +10,9 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 app = Flask(__name__)
+app.secret_key = "Analyst@10"
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tailor.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://u1ifbaupkdcsc9:p62ff6a5ca8e2b602fe2e9a7d9ab02c41baae28b5191db0b5a9947c3e9668e136@c1i13pt05ja4ag.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/de4qhno8h1om0q"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://uer9j5ka7ka7in:p4fde058d8fab9722c73f42d3b4742f54024e581afde796f16c94fb9e7e82e79f@c3nv2ev86aje4j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d2p006434tvimt"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
