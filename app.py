@@ -121,7 +121,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     is_active = db.Column(db.Boolean, default=True)  # Add this line
-    role = db.Column(db.String(20), default="member", nullable=False)
+    role = db.Column(db.String(20), nullable=False)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -149,11 +149,13 @@ class LoginForm(FlaskForm):
 
 with app.app_context():
     db.create_all()
-    # add new user
-    #new_user = User(username='oyinlola')
-    #new_user.set_password('Oyinlolareb1')
-    #db.session.add(new_user)
-    #db.session.commit()
+    
+    add new user
+    new_user = User(username='oyinlola')
+    new_user.set_password('Oyinlolareb1')
+    new_user.set_role("admin")
+    db.session.add(new_user)
+    db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 @login_required
