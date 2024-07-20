@@ -33,14 +33,14 @@ class Customer(db.Model):
 class Measurement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
-    bust = db.Column(db.Integer)
-    chest = db.Column(db.Integer)
-    waist = db.Column(db.Integer)
-    hips = db.Column(db.Integer)
-    thigh = db.Column(db.Integer)
-    neck = db.Column(db.Integer)
-    sleeve = db.Column(db.Integer)
-    inseam = db.Column(db.Integer)
+    bust = db.Column(db.String(10), nullable=True)
+    chest = db.Column(db.String(10), nullable=True)
+    waist = db.Column(db.String(10), nullable=True)
+    hips = db.Column(db.String(10), nullable=True)
+    thigh = db.Column(db.String(10), nullable=True)
+    neck = db.Column(db.String(10), nullable=True)
+    sleeve = db.Column(db.String(10), nullable=True)
+    inseam = db.Column(db.String(10), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class CustomerForm(FlaskForm):
