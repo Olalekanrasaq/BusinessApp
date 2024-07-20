@@ -783,7 +783,7 @@ def edit_order(id:int):
 @app.route('/view_measurement/<int:customer_id>', methods=['GET', 'POST'])
 def view_measurement(customer_id:int):
     customer = Customer.query.get_or_404(customer_id)
-    measurement = Measurement.query.get_or_404(customer_id)
+    measurement = Measurement.query.get_or_404(customer.id)
     db.session.commit()
 
     return render_template('view_measurement.html', measurement=measurement, customer=customer)
