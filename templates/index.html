@@ -8,8 +8,10 @@
     <title>Enior Apparel</title>
 </head>
 <body>
+    <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
     <div class="container">
         <nav class="sidebar">
+            <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
             <div class="icon"></div>
             <h1>Enior Apparel</h1>
             <ul>
@@ -213,6 +215,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             updateDashboard();
+            const sidebarToggleButtons = document.querySelectorAll('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            
+            sidebarToggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sidebar.classList.toggle('sidebar-closed');
+                    mainContent.classList.toggle('full-width');
+                });
+            });
         });
     </script>
 </body>
