@@ -51,14 +51,9 @@ body {
     flex: 1;
     padding: 20px;
 }
-.sidebar-closed {
-    width: 0;
-    overflow: hidden;
-    padding: 0;
-}
 
 .sidebar-toggle {
-    display: none;
+    display: block;
     background: none;
     border: none;
     color: white;
