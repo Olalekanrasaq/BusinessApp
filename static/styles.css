@@ -17,6 +17,55 @@ body {
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    transition: width 0.3s;
+}
+
+.sidebar-closed {
+    width: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.main-content {
+    margin-left: 240px;
+    transition: margin-left 0.3s;
+}
+
+.full-width {
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+    .sidebar-closed {
+        display: none;
+    }
+    .sidebar-toggle {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .full-width {
+        margin-left: 0;
+    }
 }
 
 .sidebar h1 {
@@ -53,12 +102,6 @@ body {
 
 .sidebar ul li a:hover {
     background-color: #34495e;
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-    margin-left: 240px;
 }
 
 .dashboard-header {
