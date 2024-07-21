@@ -303,15 +303,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.form-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -395,6 +386,10 @@ body {
     background-color: #f7f7f7;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-container label {
+    margin-right: 15px;
 }
 
 .form-header {
