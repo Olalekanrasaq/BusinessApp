@@ -781,9 +781,9 @@ def edit_order(id:int):
     return render_template('edit_order.html', order=order)
 
 @app.route('/view_measurement/<int:customer_id>', methods=['GET', 'POST'])
-def view_measurement(customer_id:int):
-    customer = Customer.query.get_or_404(customer_id)
-    measurement = Measurement.query.get_or_404(customer.id)
+def view_measurement(id:int):
+    customer = Customer.query.get_or_404(id)
+    measurement = Measurement.query.filter(Measurement.customer_id == customer.id).first_or_404()
     db.session.commit()
 
     return render_template('view_measurement.html', measurement=measurement, customer=customer)
@@ -937,7 +937,7 @@ def top_customers():
         else:
             customer_orders[customer_name] = 1
 
-    sorted_customers = sorted(customer_orders.items(), key=lambda x: x[1], reverse=True)[:5]
+    sorted_customers = sorted(customer_orders.items(), key=lambda x: x[1], reverse=True)[:10]
     top_customers_data = []
 
     for customer_name, order_count in sorted_customers:
